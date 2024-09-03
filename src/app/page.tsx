@@ -3,7 +3,7 @@
 export default function Home() {
   return (
     <main>
-     hola
+     ¡Bienvenidos!
     </main>
   );
 }
