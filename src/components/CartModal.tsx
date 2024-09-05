@@ -1,52 +1,56 @@
-"use client"
+"use client"  //Declaración del componente para ser usado del lado del cliente
 
+{/*Importaciones necesarias de next image para usar imagenes */ }
 import Image from "next/image"
 
 const CartModal = () => {
+    {/*Constante del modal del carrito, miniventana al hacer click en el carrito */ }
 
+    {/*Constante de un booleano*/ }
     const cartItems = true
     return (
         <div className="w-max absolute p-4 rounded-md shadow-[0_px_10px_rgb(0,0,0,0.2] bg-white top-12 right-0 flex flex-col gap-6 z-20">
+            {/*Función para validar el carrito de compras, cambia de false a true y de true a false, depende de los items */}
             {!cartItems ? (
                 <div>El carrito está vacío</div>
             ) : (
                 <>
-                    <h2 className="text-xl">Carrito de compra</h2>
+                    <h2 className="text-xl">Carrito de compra</h2>{/*Contenido del carrito de compra */}
                     {/*Lista de productos */}
-                    <div className="flex flex-col gap-8">
+                    <div className="flex flex-col gap-8">{/*Contenido del carrito de compra */}
                         {/* Items */}
                         <div className="flex gap-4">
-                            <Image src="" alt="Producto" width={72} height={96} className="object-cover rounded-md" />
+                            <Image src="" alt="Producto" width={72} height={96} className="object-cover rounded-md" />{/*Contenido del carrito de compra */}
                             <div className="flex flex-col justify-between w-full">
                                 {/* Información del producto */}
                                 <div>
                                     {/* Titulo del producto */}
-                                    <div className="flex items-center justify-between gap-8">
-                                        <h3 className="font-semibold">Nombre producto</h3>
-                                        <div className="p-1 bg-gray-50 rounded-sm">$2.00</div>
+                                    <div className="flex items-center justify-between gap-8">{/*Contenido del carrito de compra */}
+                                        <h3 className="font-semibold">Nombre producto</h3>{/*Contenido del carrito de compra */}
+                                        <div className="p-1 bg-gray-50 rounded-sm">$2.00</div>{/*Contenido del carrito de compra */}
                                     </div>
                                     {/* Descripción del producto */}
-                                    <div className="text-sm text-green-500">
+                                    <div className="text-sm text-green-500">{/*Contenido del carrito de compra */}
                                         Disponible
                                     </div>
                                 </div>
                                 {/* Botón */}
-                                <div className="flex justify-between text-sm">
-                                    <span className="text-gray-500">2.  2</span>
-                                    <span className="text-red-600">Borrar</span>
+                                <div className="flex justify-between text-sm">{/*Contenido del carrito de compra */}
+                                    <span className="text-gray-500">2.  2</span>{/*Contenido del carrito de compra */}
+                                    <span className="text-red-600">Borrar</span>{/*Contenido del carrito de compra */}
                                 </div>
                             </div>
                         </div>
                         {/* Items */}
                         <div className="flex gap-4">
-                            <Image src="" alt="Producto" width={72} height={96} className="object-cover rounded-md" />
-                            <div className="flex flex-col justify-between w-full">
+                            <Image src="" alt="Producto" width={72} height={96} className="object-cover rounded-md" /> {/*Contenido del carrito de compra */}
+                            <div className="flex flex-col justify-between w-full"> {/*Contenido del carrito de compra */}
                                 {/* Información del producto */}
                                 <div>
                                     {/* Titulo del producto */}
-                                    <div className="flex items-center justify-between gap-8">
-                                        <h3 className="font-semibold">Nombre producto</h3>
-                                        <div className="p-1 bg-gray-50 rounded-sm">$2.00</div>
+                                    <div className="flex items-center justify-between gap-8"> {/*Contenido del carrito de compra */}
+                                        <h3 className="font-semibold">Nombre producto</h3> {/*Contenido del carrito de compra */}
+                                        <div className="p-1 bg-gray-50 rounded-sm">$2.00</div> {/*Contenido del carrito de compra */}
                                     </div>
                                     {/* Descripción del producto */}
                                     <div className="text-sm text-green-500">
@@ -54,25 +58,26 @@ const CartModal = () => {
                                     </div>
                                 </div>
                                 {/* Botón */}
-                                <div className="flex justify-between text-sm">
-                                    <span className="text-gray-500">2.  2</span>
-                                    <span className="text-red-600">Borrar</span>
+                                <div className="flex justify-between text-sm"> {/*Contenido del carrito de compra */}
+                                    <span className="text-gray-500">2.  2</span> {/*Contenido del carrito de compra */}
+                                    <span className="text-red-600">Borrar</span> {/*Contenido del carrito de compra */}
                                 </div>
                             </div>
                         </div>
                     </div>
                     {/*Botón */}
                     <div>
-                        <div className="flex items-center justify-between font-semibold">
-                            <span>Subtotal</span>
-                            <span>$2.00</span>
+                        <div className="flex items-center justify-between font-semibold"> {/*Contenido del carrito de compra */}
+                            <span>Subtotal</span> {/*Contenido del carrito de compra */}
+                            <span>$2.00</span> {/*Contenido del carrito de compra */}
                         </div>
                         <p className="text-gray-500 text-sm mt-2 mb-4">
                             Este producto está disponible para su venta
                         </p>
-                        <div className="flex justify-between text-sm">
-                            <button className="rounded-md py-3 px-4 ring-1 ring-gray-400">Ver carrito</button>
-                            <button className="rounded-md py-3 px-4 bg-black text-white">Pagar</button>
+                        <div className="flex justify-between text-sm"> {/*Contenido del carrito de compra */}
+                            <button className="rounded-md py-3 px-4 ring-1 ring-gray-400">Ver carrito</button> {/*Contenido del carrito de compra */}
+                            <button className="rounded-md py-3 px-4 bg-black text-white">Pagar</button> {/*Contenido del carrito de compra */}
+                            <h2 className="text-xl"></h2>  {/*Contenido del carrito de compra */}
                         </div>
                     </div>
                 </>

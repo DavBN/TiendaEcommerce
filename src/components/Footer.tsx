@@ -1,4 +1,6 @@
-const Footer = () => {
+
+{/*Componente del footer, pié de página */}
+const Footer = () => { 
     return (
         <div>Footer</div>
     )
