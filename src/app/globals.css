@@ -27,7 +27,7 @@ body {
 
 
 
-.hide-scrollbar::-webkit-scrollbar {
+.hide-scrollbar::-webkit-scrollbar { 
   width: 2px; 
   height: 2px; 
 }
