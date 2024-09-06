@@ -38,8 +38,8 @@ const Footer = () => {
                     <div className="flex flex-col justify-between">{/*Contenido del footer y sección */}
                         <h1 className="font-medium text-lg">TIENDA</h1>{/*Contenido del footer y sección */}
                         <div className="flex flex-col gap-6">{/*Contenido del footer y sección */}
-                            <Link href="">Nosotros</Link>{/*Contenido del footer y sección */}
-                            <Link href="">Empresa</Link>{/*Contenido del footer y sección */}
+                            <Link href="">Productos</Link>{/*Contenido del footer y sección */}
+                            <Link href="">Razón social</Link>{/*Contenido del footer y sección */}
                             <Link href="">Afiliados</Link>{/*Contenido del footer y sección */}
                             <Link href="">Blog</Link>{/*Contenido del footer y sección */}
                             <Link href="">Contacto</Link>{/*Contenido del footer y sección */}
@@ -48,8 +48,8 @@ const Footer = () => {
                     <div className="flex flex-col justify-between">{/*Contenido del footer y sección */}
                         <h1 className="font-medium text-lg">AYUDA</h1>{/*Contenido del footer y sección */}
                         <div className="flex flex-col gap-6">{/*Contenido del footer y sección */}
-                            <Link href="">Nosotros</Link>{/*Contenido del footer y sección */}
-                            <Link href="">Empresa</Link>{/*Contenido del footer y sección */}
+                            <Link href="">Contactanos</Link>{/*Contenido del footer y sección */}
+                            <Link href="">Línea de atención</Link>{/*Contenido del footer y sección */}
                             <Link href="">Afiliados</Link>{/*Contenido del footer y sección */}
                             <Link href="">Blog</Link>{/*Contenido del footer y sección */}
                             <Link href="">Contacto</Link>{/*Contenido del footer y sección */}
