@@ -29,8 +29,8 @@ const ProductImages = () => {
     const [index, setIndex] = useState(0); {/*Constante para el index y hacer uso del usestate que me permite hacer el mapeo de las imagenes */ }
     return (
         <div className="">{/*Div padre */}
-            <div className="h-[500px] relative">{/*Tamaños del div */}
-                <Image src={images[index].url} alt="imagen" fill sizes="50vw" className="object-cover rounded-md" /> {/*imagenes, por medio del index */}
+            <div className="h-[400px] relative">{/*Tamaños del div */}
+                <Image src={images[index].url} alt="imagen" fill sizes="50vw" className="object-contain rounded-md" /> {/*imagenes, por medio del index */}
             </div>
             <div className="flex justify-between gap-4 mt-8"> {/*Tamaños del div y ajustes para adaptación de pantalla */}
                 {/*Mapeo de imagenes */}
@@ -41,7 +41,7 @@ const ProductImages = () => {
                             alt=""
                             fill
                             sizes="30vw" // Tamaño más pequeño para las imagenes que se muestran debajo de la primera visual
-                            className="object-cover rounded-md"
+                            className="object-contain rounded-md"
                         />
                     </div>
                 ))}
