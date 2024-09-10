@@ -3,8 +3,7 @@ import CategoryList from "@/components/CategoryList"; {/*Importaciones de los co
 import ProductList from "@/components/ProductList"; {/*Importaciones de los componentes necesarios */ }
 import Slider from "@/components/Slider"; import { WixClientContext } from "@/context/WixContext";
 import { useWixClient } from "@/hooks/useWixClient";
-import { wixClientServer } from "@/lib/wixClientServer";
-import { useContext, useEffect } from "react";
+import { Suspense, useContext, useEffect } from "react";
 {/*Importaciones de los componentes necesarios */ }
 
 {/*Función que contiene las 3 categorías que se muestran en el body de la página principal */ }
@@ -21,15 +20,16 @@ const Home = async () => {
    // getProducts(); {/*Cuándo el componente se monte se llama la función e inicia la consulta de productos */ }
  // }, [wixClient]);
 
- const wixClient = await wixClientServer();
- const res = await wixClient.products.queryProducts().find(); {/*Llama el método e inicia una consulta de productos */ }
+ // const wixClient = await wixClientServer()
 
   return (
     <main>
       <Slider />  {/*Implementación del slider principal que va después del navbar */}
       <div className="mt-24  px-4 md:px-8 lg:px-16 xl:32 2xl:px-64">
         <h1 className="text-2xl">Productos</h1>     {/*Sección prodductos */}
-        <ProductList /> {/*Lista de productos */}
+        <Suspense fallback={"loadin"}>
+        <ProductList categoryId={process.env.FEATURED_PRODUCTS_CATEGORY_ID!} /> {/*Lista de productos */}
+        </Suspense>
       </div>
       <div className="mt-24">
         <h1 className="text-2xl px-4 md:px-8 lg:px-16 xl:32 2xl:px-64 mb-12">Categorías</h1>   {/*Sección categorías */}
@@ -37,8 +37,9 @@ const Home = async () => {
       </div>
       <div className="mt-24  px-4 md:px-8 lg:px-16 xl:32 2xl:px-64">
         <h1 className="text-2xl">Nuevos productos</h1>   {/*Sección Nuevos productos */}
-        <ProductList /> {/*Lista de productos */}
+        <ProductList categoryId={process.env.FEATURED_PRODUCTS_CATEGORY_ID!} /> {/*Lista de productos */}
       </div>
     </main>
   );
 }
+export default Home
