@@ -35,5 +35,5 @@ export const WixClientContextProvider = ({ // Envuelve otros componentes, propor
 }: {
     children: ReactNode;
 }) => {
-    return <WixClientContext.Provider value={wixClient}>{children}</WixClientContext.Provider>; {/*permite que cualquier componente hijo acceda a wixClient a través del contexto de React */ }
+    return (<WixClientContext.Provider value={wixClient}>{children}</WixClientContext.Provider> ); {/*permite que cualquier componente hijo acceda a wixClient a través del contexto de React */ }
 }

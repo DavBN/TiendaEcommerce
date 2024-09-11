@@ -14,23 +14,14 @@ const ProductList = async ({
     categoryId: string;
     limit?: number;
 }) => {
-    let res;
-    try {
-        const wixClient = await wixClientServer();
+    const wixClient = await wixClientServer();
+    const res = await wixClient.products
+        .queryProducts()
+        .eq("collectionIds", categoryId)
+        .limit(limit || PRODUCT_PER_PAGE)
+        .find();
 
-        res = await wixClient.products
-            .queryProducts()
-            .eq("collectionIds", categoryId)
-            .limit(limit || PRODUCT_PER_PAGE)
-            .find();
-    } catch (error) {
-        console.error("Erro", error);
-        return (
-            <div className="mt-12 flex gap-x-8 gap-y-16 justify-between flex-wrap">
-                <p>No hay productos para mostrar.</p>
-            </div>
-        );
-    }
+        console.log(res.items[0].price)
     return (
         <div className="mt-12 flex gap-x-8 gap-y-16 justify-between flex-wrap"> {/*Div padre */}
             {res.items.map((product: products.Product) => (
@@ -45,7 +36,14 @@ const ProductList = async ({
                         <span className="font-medium">{product.name}</span>{/*Información del contenido mostrado */}
                         <span className="font-semibold">{product.price?.price}</span>{/*Información del contenido mostrado */}
                     </div>
-                    <div className="text-sm text-gray-500">Descripción producto</div>
+                    {product.additionalInfoSections && (
+                        <div className="text-sm text-gray-500">
+                            {product.additionalInfoSections.find(
+                                (section: any) => section.title === "Descrip"
+                            )?.description || ""}
+                        </div>
+                    )}
+
                     {/*Botón que al pasar el ratón o hacer click de rellena de color rojo */}
                     < button className="rounded-2xl ring-1 ring-tienda text-tienda w-max py-2 px-4 text-xs hover:bg-tienda hover:text-white" > Agregar al carrito</button>
                 </Link >
