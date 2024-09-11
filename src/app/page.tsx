@@ -35,7 +35,9 @@ const Home = async () => {
       </div>
       <div className="mt-24">
         <h1 className="text-2xl px-4 md:px-8 lg:px-16 xl:32 2xl:px-64 mb-12">Categorías</h1>   {/*Sección categorías */}
-        <CategoryList />  {/*Categoría de productos */}
+       <Suspense fallback={"loading"}>
+       <CategoryList />  {/*Categoría de productos */}
+       </Suspense>
       </div>
       <div className="mt-24  px-4 md:px-8 lg:px-16 xl:32 2xl:px-64">
         <h1 className="text-2xl">Nuevos productos</h1>   {/*Sección Nuevos productos */}

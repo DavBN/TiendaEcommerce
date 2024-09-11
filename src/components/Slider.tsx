@@ -9,16 +9,16 @@ const slides = [
     {
         id: 1,
         title: "Colección 2024",
-        description: "¡Hola rider!",
-        img: "/bici1.jpg",
+        description: "¡Hola!",
+        img: "/foto1.jpg",
         url: "/",
         bg: "bg-gradient-to-r from-yellow-200 via-red-200 to-pink-200",
     },
     {
         id: 2,
-        title: "MTB-Ruta-Gravel",
+        title: "Productos de todo tipo!",
         description: "¡Atreve y disfruta!",
-        img: "/bici2.avif",
+        img: "/foto2.jpg",
         url: "/",
         bg: "bg-gradient-to-r from-red-200 via-blue-200 to-pink-200",
     },
@@ -26,7 +26,7 @@ const slides = [
         id: 3,
         title: "Producto",
         description: "Sale",
-        img: "/bici3.jpg",
+        img: "/foto3.jpg",
         url: "/",
         bg: "bg-gradient-to-r from-green-200 via-orange-200 to-pink-200",
     },
@@ -63,7 +63,7 @@ const Slider = () => {
                         </div>
                         {/*Contenedor de imagen */}
                         <div className="h-1/2 xl:w-1/2 xl:h-full relative">{/*Tamaños */}
-                            <Image src={slide.img} alt="Imagen bici" fill sizes="100%" className="object-cover" />{/*Tamaños */}
+                            <Image src={slide.img} alt="Imagen bici" fill  sizes="100%" quality={100}  className="object-cover" />{/*Tamaños */}
                         </div>
                     </div>
                 ))}
