@@ -11,7 +11,7 @@ const PRODUCT_PER_PAGE = 8;
 const ProductList = async ({
     categoryId,
     limit,
-    searchParams,
+    searchParams
 }: {
     categoryId: string;
     limit?: number;
