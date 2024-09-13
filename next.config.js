@@ -1,6 +1,13 @@
 // next.config.js
+// next.config.js
+const path = require('path');
+
 module.exports = {
-    images: {
-      domains: ['static.wixstatic.com'], // Aquí agregas el dominio que necesitas
-    },
-  };
+  webpack: (config) => {
+    config.resolve.alias['@'] = path.resolve(__dirname, 'src');
+    return config;
+  },
+  images: {
+    domains: ['static.wixstatic.com'],
+  },
+};
