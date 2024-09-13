@@ -41,12 +41,14 @@ const SinglePage = async ({ params }: { params: { slug: string } }) => {
                         <h3 className="font-medium text-2xl">${product.price?.discountedPrice}</h3> {/*Precio nuevo */}
                     </div>
                 )}
+
+                {/*crea un separador visual y, si el producto tiene variantes y opciones de personalización disponibles, renderiza el componente CustomizeProducts */}
                 <div className="h-[2px] bg-gray-100" />
-                {product.variants && product.productOptions && ( 
-                <CustomizeProducts
-                    productId={product._id!}
-                    variants={product.variants}
-                    productOptions={product.productOptions} />
+                {product.variants && product.productOptions && (
+                    <CustomizeProducts
+                        productId={product._id!}
+                        variants={product.variants}
+                        productOptions={product.productOptions} />
                 )}
                 <Add />
 
