@@ -15,12 +15,16 @@ const ProductList = async ({
 }: {
     categoryId: string;
     limit?: number;
-    searchParams?:any //Incluido el searchParams para la función y el llamado
+    searchParams?: any //Incluido el searchParams para la función y el llamado
 }) => {
     const wixClient = await wixClientServer();
     const res = await wixClient.products
         .queryProducts()
+        .startsWith("name", searchParams?.name || "")
         .eq("collectionIds", categoryId)
+        .hasSome("productType", [searchParams?.type || "physical", "digital"])
+        .gt("priceData.price", searchParams?.min || 0)
+        .lt("priceData.price", searchParams?.max || 99999)
         .limit(limit || PRODUCT_PER_PAGE)
         .find();
 

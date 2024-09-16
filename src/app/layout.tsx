@@ -1,3 +1,6 @@
+// _app.tsx
+
+
 import type { Metadata } from "next"; {/*Importación de los componentes a usar  */ }
 import { Inter } from "next/font/google"; {/*Importación de los componentes a usar  */ }
 import "./globals.css"; {/*Importación de los componentes a usar  */ }

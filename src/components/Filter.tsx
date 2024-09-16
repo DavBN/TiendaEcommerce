@@ -1,39 +1,50 @@
-{/*Constante del componente filter */ }
+"use client" //Uso del componente del lado del cliente
+
+import { usePathname, useRouter, useSearchParams } from "next/navigation"; //Importaciones necesarias para el uso de nextnavegation
+
+
+{/*maneja la actualización dinámica de parámetros de búsqueda en la URL basada en la interacción del usuario con los filtros.*/ }
 const Filter = () => {
+
+    const pathname = usePathname()
+    const searchParams = useSearchParams()
+    const { replace } = useRouter();
+
+    const handleFilterChange = (e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
+        const { name, value } = e.target;
+        const params = new URLSearchParams(searchParams);
+        params.set(name, value);
+        replace(`${pathname}?${params.toString()}`);
+    }
     return (
         <div className="mt-12 flex justify-between"> {/*Div padre que contiene los demás */}
             <div className="flex gap-6 flex-wrap"> {/*Tamaño del div usando flex */}
-                <select name="type" id="" className="py-2 px-4 rounded-2xl text-xs font-medium bg-gray-200">{/*Select para selección de elementos */}
+                <select name="type" id="" className="py-2 px-4 rounded-2xl text-xs font-medium bg-gray-200"
+                    onChange={handleFilterChange}
+                >{/*Select para selección de elementos */}
                     <option>Tipo</option> {/*Despliega las opciones */}
-                    <option value="indumentaria">Indumentaria</option>
-                    <option value="bicicletas">Bicicletas</option>
+                    <option value="physical">Físico</option>
+                    <option value="digital">Digital</option>
                 </select>
-                <input type="text" name="min" placeholder="precio minimo" className="text-xs rounded-2xl pl-2 w-24 ring-1 ring-gray-500" />{/*campos de texto para ingresar valor */}
-                <input type="text" name="max" placeholder="precio maximo" className="text-xs rounded-2xl pl-2 w-24 ring-1 ring-gray-500" />{/*campos de texto para ingresar valor */}
-                <select name="size" id="" className="py-2 px-4 rounded-2xl text-xs font-medium bg-gray-200">{/*Select para selección de elementos */}
-                    <option>Tamaño</option>{/*Despliega las opciones */}
-                    <option value="indumentaria">Indumentaria</option>
-                </select>
-                <select name="color" id="" className="py-2 px-4 rounded-2xl text-xs font-medium bg-gray-200">{/*Select para selección de elementos */}
-                    <option>Color</option>{/*Despliega las opciones */}
-                    <option value="indumentaria">Test</option>
-                </select>
-                <select name="estilos" id="" className="py-2 px-4 rounded-2xl text-xs font-medium bg-gray-200">{/*Select para selección de elementos */}
+                <input type="text" name="min" placeholder="precio minimo" className="text-xs rounded-2xl pl-2 w-24 ring-1 ring-gray-500" onChange={handleFilterChange} />{/*campos de texto para ingresar valor */}
+                <input type="text" name="max" placeholder="precio maximo" className="text-xs rounded-2xl pl-2 w-24 ring-1 ring-gray-500" onChange={handleFilterChange} />{/*campos de texto para ingresar valor */}
+
+                <select name="cat" id="" className="py-2 px-4 rounded-2xl text-xs font-medium bg-gray-200" onChange={handleFilterChange}>{/*Select para selección de elementos */}
                     <option>Categorías</option>{/*Despliega las opciones */}
                     <option value="indumentaria">Nuevos</option>
                     <option value="indumentaria">Popular</option>
                 </select>
-                <select name="" id="" className="py-2 px-4 rounded-2xl text-xs font-medium bg-gray-200">{/*Select para selección de elementos */}
+                <select name="" id="" className="py-2 px-4 rounded-2xl text-xs font-medium bg-gray-200" onChange={handleFilterChange}>{/*Select para selección de elementos */}
                     <option>Todos los filtros</option>
                 </select>
             </div>
             <div className="">
-                <select name="" id="" className="py-2 px-4 rounded-2xl text-xs font-medium bg-white ring-1 ring-gray-400">{/*Select para selección de elementos */}
+                <select name="sort" id="" className="py-2 px-4 rounded-2xl text-xs font-medium bg-white ring-1 ring-gray-400" onChange={handleFilterChange}>{/*Select para selección de elementos */}
                     <option>Ordenar por</option>{/*Despliega las opciones */}
-                    <option value="">Precio (menor a mayor)</option> {/*Filtración del productos */}
-                    <option value="">Precio (mayor a menor)</option>{/*Filtración del productos */}
-                    <option value="">Nuevas</option>{/*Filtración del productos */}
-                    <option value="">Viejas</option>{/*Filtración del productos */}
+                    <option value="asc price">Precio (menor a mayor)</option> {/*Filtración del productos */}
+                    <option value="desc price">Precio (mayor a menor)</option>{/*Filtración del productos */}
+                    <option value="asc lastUpdated">Nuevas noticias</option>{/*Filtración del productos */}
+                    <option value="desc lastUpdated">Viejas noticias</option>{/*Filtración del productos */}
                 </select>
             </div>
         </div>
