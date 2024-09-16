@@ -31,8 +31,8 @@ const Filter = () => {
 
                 <select name="cat" id="" className="py-2 px-4 rounded-2xl text-xs font-medium bg-gray-200" onChange={handleFilterChange}>{/*Select para selección de elementos */}
                     <option>Categorías</option>{/*Despliega las opciones */}
-                    <option value="indumentaria">Nuevos</option>
-                    <option value="indumentaria">Popular</option>
+                    <option value="">Nuevos</option>
+                    <option value="">Popular</option>
                 </select>
                 <select name="" id="" className="py-2 px-4 rounded-2xl text-xs font-medium bg-gray-200" onChange={handleFilterChange}>{/*Select para selección de elementos */}
                     <option>Todos los filtros</option>
@@ -41,8 +41,8 @@ const Filter = () => {
             <div className="">
                 <select name="sort" id="" className="py-2 px-4 rounded-2xl text-xs font-medium bg-white ring-1 ring-gray-400" onChange={handleFilterChange}>{/*Select para selección de elementos */}
                     <option>Ordenar por</option>{/*Despliega las opciones */}
-                    <option value="asc price">Precio (menor a mayor)</option> {/*Filtración del productos */}
-                    <option value="desc price">Precio (mayor a menor)</option>{/*Filtración del productos */}
+                    <option value="asc price">Precio (low to high)</option> {/*Filtración del productos */}
+                    <option value="desc price">Precio (high to low)</option>{/*Filtración del productos */}
                     <option value="asc lastUpdated">Nuevas noticias</option>{/*Filtración del productos */}
                     <option value="desc lastUpdated">Viejas noticias</option>{/*Filtración del productos */}
                 </select>
