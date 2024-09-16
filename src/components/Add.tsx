@@ -3,18 +3,26 @@ import React, { useState } from 'react'; {/*Importación del hook usestate */ }
 
 
 {/*Componente Add */ }
-export const Add = () => {
+export const Add = ({
+    productId,
+    variantId,
+    stockNumber,
+}: {
+    productId: string;
+    variantId: string;
+    stockNumber: number;
+}) => {
     const [quantity, setQuantity] = useState(1); {/*Uso del hook dentro de la constante para la cantidad de productos */ }
 
     {/*Constante temporal para probar funcionalidad */ }
-    const stock = 4;
+    //const stock = 4;
 
     {/*Función para el aumento o disminución de cantidad, disminuye solo si es mayor que 1 y aumenta la cantidad si solo es menor que el stock disponible */ }
     const handleQuantity = (type: "i" | "d") => {
         if (type === "d" && quantity > 1) {
             setQuantity((prev) => prev - 1); {/*I incrementa */ }
         }
-        if (type === "i" && quantity < stock) {
+        if (type === "i" && quantity < stockNumber) {
             setQuantity((prev) => prev + 1); {/*D Disminute */ }
         }
     };
@@ -30,7 +38,7 @@ export const Add = () => {
                         <button className='cursor-pointer text-xl' onClick={() => handleQuantity("i")}>+</button>
                     </div>
                     <div className='text-xs'>
-                        Solo <span className='text-orange-500'>4 bicicletas</span> a tu izquierda <br /> {"No lo"}{" "} dejes pasar
+                        Solo <span className='text-orange-500'>{stockNumber}   Productos</span> quedan <br /> {"No lo"}{" "} dejes pasar
                     </div>
                 </div>
 

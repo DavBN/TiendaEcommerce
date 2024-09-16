@@ -17,6 +17,7 @@ const SinglePage = async ({ params }: { params: { slug: string } }) => {
         return notFound();
     }
 
+
     const product = products.items[0];
 
     {/*SinglePage para las páginas */ }
@@ -28,7 +29,7 @@ const SinglePage = async ({ params }: { params: { slug: string } }) => {
             </div>
             {/*Texto */}
             <div className="w-full lg:w-1/2 flex flex-col gap-6">
-                <h1 className="text-4x font-medium">{product.name}</h1> {/*Titulo del h1 que muestra el producto */}
+                <h1 className="text-4xl font-medium">{product.name}</h1> {/*Titulo del h1 que muestra el producto */}
                 <p className="text-gray-500"> {/*Parrafo con descripción del producto */}
                     {product.description}
                 </p>
@@ -44,13 +45,14 @@ const SinglePage = async ({ params }: { params: { slug: string } }) => {
 
                 {/*crea un separador visual y, si el producto tiene variantes y opciones de personalización disponibles, renderiza el componente CustomizeProducts */}
                 <div className="h-[2px] bg-gray-100" />
-                {product.variants && product.productOptions && (
+                {product.variants && product.productOptions ? (
                     <CustomizeProducts
                         productId={product._id!}
                         variants={product.variants}
                         productOptions={product.productOptions} />
+                ) : (
+                    <Add productId={product._id} variantId="00000000-0000-0000-0000-000000000000" stockNumber={product.stock?.quantity || 0} />
                 )}
-                <Add />
 
                 <div className="h-[2px] bg-gray-100" />{/*Div contenedor */}
                 {product.additionalInfoSections?.map((section: any) => (

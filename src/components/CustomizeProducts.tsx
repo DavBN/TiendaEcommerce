@@ -1,6 +1,7 @@
 "use client";
 import { products } from '@wix/stores'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import Add from './Add';
 
 {/*Componente de CustomizeProducts */ }
 {/*permite almacenar las decisiones del usuario respecto a las opciones de personalización. 
@@ -17,6 +18,22 @@ const CustomizeProducts = ({
     const [selectedOptions, setSelectedOptions] = useState<{
         [key: string]: string;
     }>({});
+
+    {/* selecciona y almacena en el estado la variante de producto que coincida con las opciones seleccionadas por el usuario. */ }
+    const [selectedVariant, setSelectedVariant] = useState<products.Variant>();
+
+    useEffect(() => {
+        const variant = variants.find((v) => {
+            const variantChoices = v.choices;
+            if (!variantChoices) return false;
+            return Object.entries(selectedOptions).every(
+                ([key, value]) => variantChoices[key] === value
+            );
+        });
+        setSelectedVariant(variant);
+    }, [selectedOptions, variants]);
+
+
 
     {/*handleOptionSelect actualiza las opciones seleccionadas por el usuario. */ }
     const handleOptionSelect = (optionType: string, choice: string) => {
@@ -86,8 +103,7 @@ const CustomizeProducts = ({
                     </ul>
                 </div>
             ))}
-
-
+            <Add productId={productId} variantId={selectedVariant?._id || "00000000-0000-0000-0000-000000000000"} stockNumber={selectedVariant?.stock?.quantity || 0} />
             {/*Colores */}
             {/* // 
                 // <ul className='flex items-center gap-3'> 
