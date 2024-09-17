@@ -1,4 +1,4 @@
-"use client" //Uso del componente del lado del cliente
+"use client"; //Uso del componente del lado del cliente
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation"; //Importaciones necesarias para el uso de nextnavegation
 
@@ -6,8 +6,8 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation"; //Imp
 {/*maneja la actualización dinámica de parámetros de búsqueda en la URL basada en la interacción del usuario con los filtros.*/ }
 const Filter = () => {
 
-    const pathname = usePathname()
-    const searchParams = useSearchParams()
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
     const { replace } = useRouter();
 
     const handleFilterChange = (e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {

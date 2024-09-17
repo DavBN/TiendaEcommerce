@@ -30,14 +30,14 @@ const ProductList = async ({
 
     if (searchParams?.sort) {
         const [sortType, sortBy] = searchParams.sort.split(" ");
-
+    
         if (sortType === "asc") {
-            productQuery.ascending(sortBy);
+          productQuery.ascending(sortBy);
         }
         if (sortType === "desc") {
-            productQuery.descending(sortBy);
+          productQuery.descending(sortBy);
         }
-    }
+      }
 
     const res = await productQuery.find();
 
@@ -59,7 +59,7 @@ const ProductList = async ({
                         <div className="text-sm text-gray-500" dangerouslySetInnerHTML={{
                             __html: DOMPurify.sanitize(product.additionalInfoSections.find(
                                 (section: any) => section.title === "Descrip"
-                            )?.description || "")
+                            )?.description || ""),
                         }}>
                         </div>
                     )}
