@@ -3,6 +3,9 @@ import CustomizeProducts from "@/components/CustomizeProducts"; {/*Importación 
 import ProductImages from "@/components/ProductImages"; import { wixClientServer } from "@/lib/wixClientServer";
 import { products } from "@wix/stores";
 import { notFound } from "next/navigation";
+import DOMPurify from 'dompurify';
+
+
 {/*Importación del componente productimages */ }
 
 const SinglePage = async ({ params }: { params: { slug: string } }) => {
@@ -30,9 +33,12 @@ const SinglePage = async ({ params }: { params: { slug: string } }) => {
             {/*Texto */}
             <div className="w-full lg:w-1/2 flex flex-col gap-6">
                 <h1 className="text-4xl font-medium">{product.name}</h1> {/*Titulo del h1 que muestra el producto */}
-                <p className="text-gray-500"> {/*Parrafo con descripción del producto */}
-                    {product.description}
-                </p>
+                {product.description && product.description.trim() !== '' && (
+                    <p className="text-gray-500">
+                        {/* Párrafo con descripción del producto */}
+                        {product.description}
+                    </p>
+                )}
                 <div className="h-[2px] bg-gray-100" /> {/*Div contenedor */}
                 {product.price?.price === product.price?.discountedPrice ? (
                     <h2 className="font-medium text-2xl">${product.price?.price}</h2>
