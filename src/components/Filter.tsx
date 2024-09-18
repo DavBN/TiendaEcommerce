@@ -26,10 +26,10 @@ const Filter = () => {
                     <option value="physical">Físico</option>
                     <option value="digital">Digital</option>
                 </select>
-                <input type="text" name="min" placeholder="precio minimo" className="text-xs rounded-2xl pl-2 w-24 ring-1 ring-gray-500" onChange={handleFilterChange} />{/*campos de texto para ingresar valor */}
-                <input type="text" name="max" placeholder="precio maximo" className="text-xs rounded-2xl pl-2 w-24 ring-1 ring-gray-500" onChange={handleFilterChange} />{/*campos de texto para ingresar valor */}
+                <input type="text" name="min" placeholder="min price" className="text-xs rounded-2xl pl-2 w-24 ring-1 ring-gray-500" onChange={handleFilterChange} />{/*campos de texto para ingresar valor */}
+                <input type="text" name="max" placeholder="max price" className="text-xs rounded-2xl pl-2 w-24 ring-1 ring-gray-500" onChange={handleFilterChange} />{/*campos de texto para ingresar valor */}
 
-                <select name="cat" id="" className="py-2 px-4 rounded-2xl text-xs font-medium bg-gray-200" onChange={handleFilterChange}>{/*Select para selección de elementos */}
+                <select name="cat" className="py-2 px-4 rounded-2xl text-xs font-medium bg-gray-200" onChange={handleFilterChange}>{/*Select para selección de elementos */}
                     <option>Categorías</option>{/*Despliega las opciones */}
                     <option value="">Nuevos</option>
                     <option value="">Popular</option>

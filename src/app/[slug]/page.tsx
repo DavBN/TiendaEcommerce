@@ -67,9 +67,14 @@ const SinglePage = async ({ params }: { params: { slug: string } }) => {
                 {product.additionalInfoSections?.map((section: any) => (
                     <div className="text-sm" key={section.title}>
                         <h4 className="font-medium mb-4">{section.title}</h4> {/*Información de los productos */}
-                        <p>{/*Información de los productos */}
-                            {section.description}
-                        </p>
+                        {section.description && section.description.trim() !== '' && (
+                            <div
+                                className="text-sm text-gray-500"
+                                dangerouslySetInnerHTML={{
+                                    __html: DOMPurify.sanitize(section.description || ""),
+                                }}
+                            />
+                        )}
                     </div>
                 ))}
             </div>
