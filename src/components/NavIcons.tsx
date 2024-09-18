@@ -4,7 +4,8 @@ import Image from "next/image"; {/*Importación de next image para el uso de ima
 import Link from "next/link"; {/*Importación de next link para el uso de links */ }
 import { useRouter } from "next/navigation"; {/*Importación de next navigation como método de navegación - Router */ }
 import { useState } from "react"; {/*Importación del hook de usestate por parte de react */ }
-import CartModal from "./CartModal"; {/*Importación del componente cartmodal */ }
+import CartModal from "./CartModal"; import { useWixClient } from "@/hooks/useWixClient";
+{/*Importación del componente cartmodal */ }
 
 {/*Componente de navicons */ }
 const NavIcons = () => {
@@ -19,10 +20,31 @@ const NavIcons = () => {
             router.push("/login");
         }
         setIsProfileOpen((prev) => !prev); {/*Función que válida si el usuario se loggeo o no, dependiendo lo mandará a la page principal o a la de login */ }
-    }
+    };
+
+
+    //Autorización con wix-manager para el login
+    const wixClient = useWixClient(); //crea una instancia del cliente de Wix utilizando un hook llamado useWixClient
+    // función asíncrona
+    const login = async () => {
+        {/*genera los datos necesarios para realizar una solicitud de autenticación OAuth y será redirigido al localhost:3000 */ }
+        const loginRequestData = wixClient.auth.generateOAuthData(
+            "http://localhost:3000"
+        );
+
+        //Los datos generados para la solicitud de autenticación se guardan en el localStorage del navegador
+        localStorage.setItem("oAuthRedirectData", JSON.stringify(loginRequestData));
+        //Solicita la url de autenticación authUrl a Wix utilizando los datos generados previamente loginRequestData
+        const { authUrl } = await wixClient.auth.getAuthUrl(loginRequestData);
+        //redirige al usuario a la URL de autenticación proporcionada
+        window.location.href = authUrl;
+    };
+
     return (
         <div className="flex items-center gap-4 xl:gap-6 relative">
-            <Image src="/perfil.png" alt="Login" width={22} height={22} className="cursor-pointer" onClick={handleProfile} /> {/*Icono del perfil, al hacer click muestra el mismo */}
+            <Image src="/perfil.png" alt="Login" width={22} height={22} className="cursor-pointer" //onClick={handleProfile} 
+                onClick={login}
+            /> {/*Icono del perfil, al hacer click muestra el mismo */}
             {/*Si el perfil está abierto muestra la información */}
             {isProfileOpen && (
                 <div className="absolute p-4 rounded-md top-12 left-0 text-sm shadow-[0_3px_10px_rgb(0,0,0,0.2)] z-20">

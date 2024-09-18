@@ -1,24 +1,24 @@
-"use client"; //Componente para el uso del lado del cliente
-import { usePathname, useRouter, useSearchParams } from "next/navigation"; //Importación de next navigation para uso de los parámetros creados en otros componentes
+"use client"; // Componente para el uso del lado del cliente
+import React, { Suspense } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-//Función para el paginado de la página y mostra botones de acuerdo al producto mostrado, son booleanos para que se muestre o no dependiendo la página
-const Pagination = ({
-    currentPage,
-    hasPrev,
-    hasNext,
-}: {
+// Define una interfaz para los props del componente Pagination
+interface PaginationProps {
     currentPage: number;
     hasPrev: boolean;
     hasNext: boolean;
-}) => {
+}
 
-    //Uso del componente del filtro para busqueda de parámetros
+// Componente Pagination
+const Pagination: React.FC<PaginationProps> = ({
+    currentPage,
+    hasPrev,
+    hasNext,
+}) => {
     const pathname = usePathname();
     const searchParams = useSearchParams();
     const { replace } = useRouter();
 
-
-    //Crea la nueva URL de la página sin actualizar, agrega la page=1,2,3 dependiendo de la acción del botón
     const createPageUrl = (pageNumber: number) => {
         const params = new URLSearchParams(searchParams);
         params.set("page", pageNumber.toString());
@@ -27,21 +27,29 @@ const Pagination = ({
 
     return (
         <div className="mt-12 flex justify-between w-full">
-            <button className="rounded-md bg-tienda text-white p-2 text-sm w-24 cursor-pointer disabled:cursor-not-allowed disabled:bg-pink-300"
-                disabled={!hasPrev} //Si esta presente deshabilitar el botón
-                onClick={() => createPageUrl(currentPage - 1)} //Muestra en la url page=1 
+            <button
+                className="rounded-md bg-tienda text-white p-2 text-sm w-24 cursor-pointer disabled:cursor-not-allowed disabled:bg-pink-300"
+                disabled={!hasPrev}
+                onClick={() => createPageUrl(currentPage - 1)}
             >
                 Previa
             </button>
-            <button className="rounded-md bg-tienda text-white p-2 text-sm w-24 cursor-pointer disabled:cursor-not-allowed disabled:bg-pink-300"
-                disabled={!hasNext}//Si esta presente deshabilitar el botón
-                onClick={() => createPageUrl(currentPage + 1)} //Muestra en la url page=1
+            <button
+                className="rounded-md bg-tienda text-white p-2 text-sm w-24 cursor-pointer disabled:cursor-not-allowed disabled:bg-pink-300"
+                disabled={!hasNext}
+                onClick={() => createPageUrl(currentPage + 1)}
             >
                 Siguiente
-
             </button>
         </div>
-    )
-}
+    );
+};
 
-export default Pagination; 
+// Componente SuspensePagination
+const SuspensePagination: React.FC<PaginationProps> = (props) => (
+    <Suspense fallback={<div>Loading pagination, please wait...</div>}>
+        <Pagination {...props} />
+    </Suspense>
+);
+
+export default SuspensePagination;
