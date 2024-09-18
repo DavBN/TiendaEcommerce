@@ -5,6 +5,7 @@ import Image from "next/image"; {/*Importación de next image para el uso de ima
 import Link from "next/link"; {/*Importación de next link para el uso de links */ }
 import DOMPurify from "isomorphic-dompurify";
 import Pagination from "./Pagination";
+import React from 'react';
 
 const PRODUCT_PER_PAGE = 8;
 

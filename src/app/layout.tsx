@@ -5,7 +5,8 @@ import type { Metadata } from "next"; {/*Importación de los componentes a usar 
 import { Inter } from "next/font/google"; {/*Importación de los componentes a usar  */ }
 import "./globals.css"; {/*Importación de los componentes a usar  */ }
 import Navbar from "@/components/Navbar"; {/*Importación de los componentes a usar  */ }
-import Footer from "@/components/Footer"; import { WixClientContextProvider } from "@/context/WixContext";
+import Footer from "@/components/Footer";
+ import { WixClientContextProvider } from "@/context/WixContext";
 {/*Importación de los componentes a usar  */ }
 
 const inter = Inter({ subsets: ["latin"] }); {/*Aplicación de los estilos fuente, por medio del constante inter */ }
