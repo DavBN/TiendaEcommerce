@@ -33,7 +33,7 @@ const LoginPage = () => {
     //Determina el título del formulario basado en el valor del estado mode
     const formTitle =
         mode === MODE.LOGIN
-            ? "Log in" : mode === MODE.REGISTRER ? "Registrar" : mode === MODE.RESET_PASSWORD ? "Resetear contraseña" : "Verificar email";
+            ? "Loggeo" : mode === MODE.REGISTRER ? "Registrar" : mode === MODE.RESET_PASSWORD ? "Resetear contraseña" : "Verificar email";
 
     //Determina el título del formulario basado en el valor del estado mode, botón
     const buttonTitle =

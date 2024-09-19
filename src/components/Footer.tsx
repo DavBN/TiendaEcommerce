@@ -1,5 +1,6 @@
 import Image from "next/image"; {/*Importación de next image para el uso de imagenes */}
-import Link from "next/link"; {/*Importación de next link para uso de links */ }
+import Link from "next/link";import ToggleTheme from "./ToggleTheme";
+ {/*Importación de next link para uso de links */ }
 
 {/*Componente del footer, pié de página */ }
 const Footer = () => {
@@ -95,6 +96,7 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
+
         </div>
     )
 }
