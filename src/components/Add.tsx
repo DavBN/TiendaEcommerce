@@ -28,7 +28,7 @@ export const Add = ({
     };
 
     return (
-        <div className='flex flex-col gap-4'> {/*Div contenedor principal */}
+        <div className='flex flex-col gap-4 dark:grayscale dark:text-black' > {/*Div contenedor principal */}
             <h4 className='font-medium'>Elige la cantidad</h4> {/*Título de la sección para selección de cantidad de producto */}
             <div className='flex justify-between'>
                 <div className='flex items-center gap-4'>

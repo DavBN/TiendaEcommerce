@@ -5,7 +5,7 @@ import Link from "next/link";import ToggleTheme from "./ToggleTheme";
 {/*Componente del footer, pié de página */ }
 const Footer = () => {
     return (
-        <div className="py-24 px-4 md:px-8 lg:px-16 xl:32 2xl:px-64 bg-gray-200 text-sm mt-24"> {/*Aisgnación de tamaños y color del footer */}
+        <div className="py-24 px-4 md:px-8 lg:px-16 xl:32 2xl:px-64 bg-gray-200 text-sm mt-24  dark:grayscale dark:text-black"> {/*Aisgnación de tamaños y color del footer */}
             {/*Arriba */}
             <div className="flex flex-col md:flex-row justify-between gap-24">
                 {/*Izquierda */}

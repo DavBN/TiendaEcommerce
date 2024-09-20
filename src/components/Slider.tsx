@@ -12,7 +12,7 @@ const slides = [
         description: "¡Hola!",
         img: "/foto1.jpg",
         url: "/",
-        bg: "bg-gradient-to-r from-yellow-200 via-red-200 to-pink-200",
+        bg: "bg-gradient-to-r from-yellow-200 via-red-200 to-pink-200 dark:grayscale dark:text-black",
     },
     {
         id: 2,
@@ -20,7 +20,7 @@ const slides = [
         description: "¡Atreve y disfruta!",
         img: "/foto2.jpg",
         url: "/",
-        bg: "bg-gradient-to-r from-red-200 via-blue-200 to-pink-200",
+        bg: "bg-gradient-to-r from-red-200 via-blue-200 to-pink-200 dark:grayscale dark:text-black",
     },
     {
         id: 3,
@@ -28,7 +28,7 @@ const slides = [
         description: "Sale",
         img: "/foto3.jpg",
         url: "/",
-        bg: "bg-gradient-to-r from-green-200 via-orange-200 to-pink-200",
+        bg: "bg-gradient-to-r from-green-200 via-orange-200 to-pink-200 dark:grayscale dark:text-black",
     },
 ]
 
@@ -63,7 +63,7 @@ const Slider = () => {
                         </div>
                         {/*Contenedor de imagen */}
                         <div className="h-1/2 xl:w-1/2 xl:h-full relative">{/*Tamaños */}
-                            <Image src={slide.img} alt="Imagen bici" fill  sizes="100%" quality={100}  className="object-cover" />{/*Tamaños */}
+                            <Image src={slide.img} alt="Imagen bici" fill  sizes="100%" quality={100}  className="object-cover dark:grayscale" />{/*Tamaños */}
                         </div>
                     </div>
                 ))}

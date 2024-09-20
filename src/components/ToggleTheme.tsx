@@ -1,45 +1,40 @@
-"use client"; //Componente de uso del lado del cliente
-import React, { useState, useEffect } from "react";
+"use client"; //componente de uso del lado del cliente
 
+import { useState } from 'react'; //Importación del hook
+
+//constante del componente
 const ToggleTheme = () => {
-  const [theme, setTheme] = useState<string>("light");
+  const [isDarkMode, setIsDarkMode] = useState(false); //Se usa el hook de usestate para definir la varuavle isdarkmode
 
-  useEffect(() => {
-    // Obtener el tema actual del almacenamiento local o establecer el tema por defecto del sistema
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
-      setTheme(savedTheme);
-    } else {
-      // Si no hay tema guardado, usar el tema por defecto del sistema
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      setTheme(prefersDark ? "dark" : "light");
-    }
-  }, []);
-
-  useEffect(() => {
-    // Actualizar la clase en el HTML
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-    // Guardar el tema en localStorage
-    localStorage.setItem("theme", theme);
-  }, [theme]);
-
+  //Función que se ejecuta al dar click en el botón para cambio de tema entre claro y oscuro
   const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
+    setIsDarkMode(!isDarkMode);
+    document.documentElement.classList.toggle('dark', !isDarkMode);
   };
 
   return (
-    <button
-      onClick={toggleTheme}
-      className="p-2 bg-gray-200 dark:bg-gray-800 rounded"
-    >
-      {theme === "dark" ? "🌞 Claro" : "🌙 Oscuro"}
-    </button>
+    <div className="flex justify-center items-center h-screen"> {/*Div padre que contiene el botón y la "cuerda en el botón" */}
+      {/* Contenedor que simula el cable colgante */}
+      <div className="relative flex flex-col items-center">
+        {/* Línea que simula el cable */}
+        <div className="w-1 bg-gray-400 h-5"></div>
+
+        {/* Botón que simula el interruptor */}
+        <button
+          onClick={toggleTheme}
+          className={`flex items-center justify-center w-16 h-8 bg-gray-300 dark:bg-gray-700 rounded-full shadow-lg transition-transform duration-300 ${isDarkMode ? 'translate-y-2' : '-translate-y-2'
+            }`}
+        >
+          <span className="text-2xl"> 
+            {isDarkMode ? '🌙' : '☀️'}
+          </span>
+        </button>
+
+        {/* Texto que describe el tema */}
+        <span className="mt-2 text-lg">{isDarkMode ? '' : ''}</span> {/*En caso de querer texto que diga el color actual se puede colocar en los strings */}
+      </div>
+    </div>
   );
 };
 
 export default ToggleTheme;
-

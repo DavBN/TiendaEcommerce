@@ -45,7 +45,7 @@ const LoginPage = () => {
 
     return (
         //Div padre con clase y estilos de adaptación a pantalla
-        <div className="h-[calc(100vh-80px)] px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 flex items-center justify-center">
+        <div className="h-[calc(100vh-80px)] px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 flex items-center justify-center dark:grayscale dark:text-black">
             <form className="flex flex-col gap-8">
                 <h1 className="text-2xl font-semibold text-center">{formTitle}</h1>
                 {/*Si mode es igual a MODE.REGISTRER, se muestra un campo de entrada para el nombre de usuario y sino no se muestra */}
