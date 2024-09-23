@@ -13,7 +13,7 @@ const inter = Inter({ subsets: ["latin"] }); {/*Aplicación de los estilos fuent
 
 {/*el export del metadata que contiene el titulo y la descripción de la página o proyecto */ }
 export const metadata: Metadata = {
-  title: "Tienda virtual",
+  title: "PulseWear",
   description: "Tienda virtual para venta de productos",
 };
 

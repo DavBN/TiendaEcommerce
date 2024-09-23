@@ -89,6 +89,7 @@ const LoginPage = () => {
                         email,
                         window.location.href
                     );
+                    setMessage("Contraseña enviada a tu email. Porfavor revisa tu bandeja de entrada")
                     break;
                 case MODE.EMAIL_VERIFICATION:
                     response = await wixClient.auth.processVerification({ //Proceso de verificación de la cuenta por medio del código enviado al usuario a su correo registrado
@@ -103,7 +104,7 @@ const LoginPage = () => {
             //Estado de la operación, error, exito o pendiente.
             switch (response?.loginState) {
                 case LoginState.SUCCESS: //maneja el estado de inicio de sesión de un usuario. Si el inicio de sesión es exitoso
-                    setMessage("Proceso exitoso, serás redirigido en un momento!.") //mensaje al usuario de exito
+                    setMessage("Login exitoso, serás redirigido en un momento!.") //mensaje al usuario de exito
                     const tokens = await wixClient.auth.getMemberTokensForDirectLogin(response.data.sessionToken!); //Obtiene los tokens de validación
                     console.log(tokens);
 
@@ -113,10 +114,30 @@ const LoginPage = () => {
                     wixClient.auth.setTokens(tokens);
                     router.push("/");
                     break;
+                //Validación de los campos para alertas al usuario
+                case LoginState.FAILURE:
+                    if (response.errorCode === "invalidEmail" || response.errorCode === "invalidPassword") { //Correo o contraseña invalidas
+                        setError("Correo inválido o contraseña inválida")
+                    }
+                    else if (response.errorCode === "emailAlreadyExists") { //Validación del correo eléctronico
+                        setError("Este correo ya existe")
+                    }
+                    else if (response.errorCode === "resetPassword") { //Validación para el reset de contraseñas
+                        setError("Tu necesitas cambiar tu contraseña")
+                    } else {
+                        setError("Algo salió mal, intentalo de nuevo") //En caso de que todo salga mal o algo sal mal se muetra el error
+                    }
+                //Verificación de email al momento de crear cuenta
+                case LoginState.EMAIL_VERIFICATION_REQUIRED:
+                    setMode(MODE.EMAIL_VERIFICATION);
+                case LoginState.OWNER_APPROVAL_REQUIRED:
+                    setMessage("Tu cuenta esta pendiente de aprobación");
+                default:
+                    break;
             }
 
         } catch (error) {
-            setError("No podemos mostrar esta página"); //Error
+            setError("Algo salió mal, intenta de nuevo!"); //Error
 
         } finally {
             setIsLoading(false)

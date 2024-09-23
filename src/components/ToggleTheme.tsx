@@ -22,7 +22,7 @@ const ToggleTheme = () => {
         {/* Botón que simula el interruptor */}
         <button
           onClick={toggleTheme}
-          className={`flex items-center justify-center w-16 h-8 bg-gray-300 dark:bg-gray-700 rounded-full shadow-lg transition-transform duration-300 ${isDarkMode ? 'translate-y-2' : '-translate-y-2'
+          className={`flex items-center justify-center w-16 h-8 bg-gray-300 dark:bg-gray-700 rounded-full shadow-lg transition-transform duration-700 ease-in-out ${isDarkMode ? 'translate-y-2' : '-translate-y-2'
             }`}
         >
           <span className="text-2xl"> 

@@ -61,7 +61,7 @@ const NavIcons = () => {
 
     return (
         <div className="flex items-center gap-4 xl:gap-6 relative">
-            <Image src="/perfil.png" alt="Login" width={22} height={22} className="cursor-pointer"
+            <Image src="/perfil.png" alt="Login" width={30} height={30} className="cursor-pointer"
                 onClick={handleProfile}
             // onClick={login}
             /> {/*Icono del perfil, al hacer click muestra el mismo */}
@@ -73,11 +73,11 @@ const NavIcons = () => {
                 </div>
             )}
 
-            <Image src="/notificacion.png" alt="Login" width={22} height={22} className="cursor-pointer" /> {/*Icono de notificaciones */}
+            <Image src="/notificacion.png" alt="Login" width={30} height={30} className="cursor-pointer dark:grayscale dark:text-black" /> {/*Icono de notificaciones */}
             <div className="relative cursor-pointer" onClick={() => setIsCartOpen((prev) => !prev)}>
                 {/*Imagen de carrito de compra con función, en caso de dar click y abrir mostrará la ventana modal con información */}
-                <Image src="/carro.webp" alt="Login" width={22} height={22} className="cursor-pointer" />
-                <div className="absolute -top-4 -right-4 w-6 h- bg-tienda rounded-full text-white text-sm flex items-center justify-center">2</div>
+                <Image src="/carro.webp" alt="Login" width={30} height={30} className="cursor-pointer dark:grayscale dark:text-dark" />
+                <div className="absolute -top-4 -right-4 w-6 h- bg-tienda rounded-full text-white text-sm flex items-center justify-center dark:grayscale dark:text-dark" >2</div>
             </div>
             {isCartOpen && <CartModal />}
         </div>
