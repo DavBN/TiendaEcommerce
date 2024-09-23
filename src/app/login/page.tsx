@@ -2,7 +2,8 @@
 
 import { useWixClient } from "@/hooks/useWixClient";
 import { LoginState } from "@wix/sdk";
-import { usePathname } from "next/navigation";
+import Cookies from "js-cookie";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
 //Modos de autenticación
@@ -14,6 +15,16 @@ enum MODE {
 }
 
 const LoginPage = () => {
+    const wixClient = useWixClient();
+    const router = useRouter();
+
+    const isLoggedIn = wixClient.auth.loggedIn();
+    console.log(isLoggedIn);
+
+    if (isLoggedIn) {
+        router.push("/");
+    }
+
 
     //Controla el modo actual de inicio de sesión
     const [mode, setMode] = useState(MODE.LOGIN)
@@ -32,7 +43,8 @@ const LoginPage = () => {
     //Almacena mensajes generales
     const [message, setMessage] = useState("");
     //URL que identifica la ubicación del recurso solicitado en el servidor
-    const pathName = usePathname()
+    const pathName = usePathname();
+
 
     //Determina el título del formulario basado en el valor del estado mode
     const formTitle =
@@ -45,7 +57,7 @@ const LoginPage = () => {
             ? "Login" : mode === MODE.REGISTRER ? "Registrar" : mode === MODE.RESET_PASSWORD ? "Resetear" : "Verificar";
 
     //Uso del cliente de wix
-    const wixClient = useWixClient();
+
 
     //Función asyncrona
     const handleSumit = async (e: React.FormEvent) => {
@@ -80,7 +92,7 @@ const LoginPage = () => {
                     break;
                 case MODE.EMAIL_VERIFICATION:
                     response = await wixClient.auth.processVerification({ //Proceso de verificación de la cuenta por medio del código enviado al usuario a su correo registrado
-                        verificationCode: emailCode
+                        verificationCode: emailCode,
                     });
                     break;
                 default:
@@ -88,9 +100,18 @@ const LoginPage = () => {
             }
             console.log(response);
 
+            //Estado de la operación, error, exito o pendiente.
             switch (response?.loginState) {
-                case LoginState.SUCCESS:
-                    setMessage("Proceso exitoso, serás redirigido en un momento!.")
+                case LoginState.SUCCESS: //maneja el estado de inicio de sesión de un usuario. Si el inicio de sesión es exitoso
+                    setMessage("Proceso exitoso, serás redirigido en un momento!.") //mensaje al usuario de exito
+                    const tokens = await wixClient.auth.getMemberTokensForDirectLogin(response.data.sessionToken!); //Obtiene los tokens de validación
+                    console.log(tokens);
+
+                    Cookies.set("refreshToken", JSON.stringify(tokens.refreshToken), {
+                        expires: 2
+                    })
+                    wixClient.auth.setTokens(tokens);
+                    router.push("/");
                     break;
             }
 
