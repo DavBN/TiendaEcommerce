@@ -24,26 +24,27 @@ const NavIcons = () => {
 
 
     //Autorización con wix-manager para el login
-    const wixClient = useWixClient(); //crea una instancia del cliente de Wix utilizando un hook llamado useWixClient
-    // función asíncrona
-    const login = async () => {
-        {/*genera los datos necesarios para realizar una solicitud de autenticación OAuth y será redirigido al localhost:3000 */ }
-        const loginRequestData = wixClient.auth.generateOAuthData(
-            "http://localhost:3000"
-        );
+    // const wixClient = useWixClient(); //crea una instancia del cliente de Wix utilizando un hook llamado useWixClient
+    // // función asíncrona
+    // const login = async () => {
+    //     {/*genera los datos necesarios para realizar una solicitud de autenticación OAuth y será redirigido al localhost:3000 */ }
+    //     const loginRequestData = wixClient.auth.generateOAuthData(
+    //         "http://localhost:3000"
+    //     );
 
-        //Los datos generados para la solicitud de autenticación se guardan en el localStorage del navegador
-        localStorage.setItem("oAuthRedirectData", JSON.stringify(loginRequestData));
-        //Solicita la url de autenticación authUrl a Wix utilizando los datos generados previamente loginRequestData
-        const { authUrl } = await wixClient.auth.getAuthUrl(loginRequestData);
-        //redirige al usuario a la URL de autenticación proporcionada
-        window.location.href = authUrl;
-    };
+    //     //Los datos generados para la solicitud de autenticación se guardan en el localStorage del navegador
+    //     localStorage.setItem("oAuthRedirectData", JSON.stringify(loginRequestData));
+    //     //Solicita la url de autenticación authUrl a Wix utilizando los datos generados previamente loginRequestData
+    //     const { authUrl } = await wixClient.auth.getAuthUrl(loginRequestData);
+    //     //redirige al usuario a la URL de autenticación proporcionada
+    //     window.location.href = authUrl;
+    // };
 
     return (
         <div className="flex items-center gap-4 xl:gap-6 relative">
-            <Image src="/perfil.png" alt="Login" width={22} height={22} className="cursor-pointer" //onClick={handleProfile} 
-                onClick={login}
+            <Image src="/perfil.png" alt="Login" width={22} height={22} className="cursor-pointer" 
+            onClick={handleProfile} 
+           // onClick={login}
             /> {/*Icono del perfil, al hacer click muestra el mismo */}
             {/*Si el perfil está abierto muestra la información */}
             {isProfileOpen && (
