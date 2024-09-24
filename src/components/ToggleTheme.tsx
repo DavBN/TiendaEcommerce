@@ -31,7 +31,7 @@ const ToggleTheme = () => {
         </button>
 
         {/* Texto que describe el tema */}
-        <span className="mt-2 text-lg">{isDarkMode ? '' : ''}</span> {/*En caso de querer texto que diga el color actual se puede colocar en los strings */}
+        <span className="text-3xl">{isDarkMode ? '' : ''}</span> {/*En caso de querer texto que diga el color actual se puede colocar en los strings */}
       </div>
     </div>
   );

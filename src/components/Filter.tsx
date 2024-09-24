@@ -41,10 +41,10 @@ const Filter = () => {
             <div className="">
                 <select name="sort" id="" className="py-2 px-4 rounded-2xl text-xs font-medium bg-white ring-1 ring-gray-400" onChange={handleFilterChange}>{/*Select para selección de elementos */}
                     <option>Ordenar por</option>{/*Despliega las opciones */}
-                    <option value="asc price">Precio (low to high)</option> {/*Filtración del productos */}
-                    <option value="desc price">Precio (high to low)</option>{/*Filtración del productos */}
-                    <option value="asc lastUpdated">Nuevas noticias</option>{/*Filtración del productos */}
-                    <option value="desc lastUpdated">Viejas noticias</option>{/*Filtración del productos */}
+                    <option value="asc price">Price (low to high)</option> {/*Filtración del productos */}
+                    <option value="desc price">Price (high to low)</option>{/*Filtración del productos */}
+                    <option value="asc lastUpdated">Newest</option>{/*Filtración del productos */}
+                    <option value="desc lastUpdated">Oldest</option>{/*Filtración del productos */}
                 </select>
             </div>
         </div>
