@@ -12,7 +12,7 @@ const NavIcons = dynamic(() => import("./NavIcons"), {ssr: false});
 {/*El menú de navegación */ }
 const Navbar = () => {
     return (
-        <div className="sticky top-0 z-60 bg-white dark:bg-gray-700 h-20 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 shadow-md "> {/*Div padre */}
+        <div className="sticky top-0 z-50 bg-white dark:bg-gray-700 h-20 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 shadow-md "> {/*Div padre */}
             {/*Menú de celular con logo*/}
             <div className="h-full flex items-center justify-between md:hidden"> {/*Tamaños y ajustes de pantalla para celular */}
                 <Link href="/">
@@ -38,7 +38,7 @@ const Navbar = () => {
                     </div>
                 </div>
                 {/*Derecha*/}
-                <div className="w-2/3 xl:w-1/2 flex items-center justify-between gap-8 dark:grayscale">
+                <div className="w-2/3 xl:w-1/2 flex items-center justify-between gap-8 dark:grayscale ">
                     <SearchBar />
                     <NavIcons />
                     <ToggleTheme />
