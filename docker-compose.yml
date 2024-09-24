@@ -12,5 +12,7 @@ services:
       - .:/app  
     environment:
       - NODE_ENV=production
+      
+    env_file: 
+      - .env
     restart: always
-
