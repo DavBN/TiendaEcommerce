@@ -17,7 +17,7 @@ const Filter = () => {
         replace(`${pathname}?${params.toString()}`);
     }
     return (
-        <div className="relative mt-12 z-50 flex justify-between"> {/*Div padre que contiene los demás */}
+        <div className="mt-12 flex justify-between"> {/*Div padre que contiene los demás */}
             <div className="flex gap-6 flex-wrap"> {/*Tamaño del div usando flex */}
                 <select name="type" id="" className="py-2 px-4 rounded-2xl text-xs font-medium bg-gray-200"
                     onChange={handleFilterChange}

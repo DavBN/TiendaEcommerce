@@ -9,7 +9,7 @@ const CategoryList = async () => {
     const cats = await wixClient.collections.queryCollections().find()
 
     return (
-        <div className="relative z-50 px-4 overflow-x-scroll  hide-scrollbar dark:grayscale">{/*Contenido del carrusel con las categorías con función de scroll */}
+        <div className="px-4 overflow-x-scroll  hide-scrollbar dark:grayscale">{/*Contenido del carrusel con las categorías con función de scroll */}
             {/*Contenido del carrusel con las categorías */}
             <div className="flex gap-4 md:gap-8">
                 {(cats).items.map((item) => (

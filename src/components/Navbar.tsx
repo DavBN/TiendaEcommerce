@@ -12,7 +12,7 @@ const NavIcons = dynamic(() => import("./NavIcons"), {ssr: false});
 {/*El menú de navegación */ }
 const Navbar = () => {
     return (
-        <div className="sticky top-0 z-50 bg-white dark:bg-gray-700 h-20 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 shadow-md "> {/*Div padre */}
+        <div className="h-20 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64  dark:bg-gray-700  relative "> {/*Div padre */}
             {/*Menú de celular con logo*/}
             <div className="h-full flex items-center justify-between md:hidden"> {/*Tamaños y ajustes de pantalla para celular */}
                 <Link href="/">
