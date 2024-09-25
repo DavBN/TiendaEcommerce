@@ -1,4 +1,5 @@
 "use client"; {/*Componente del lado de uso del cliente */ }
+import { useCartStore } from '@/hooks/useCartStore';
 import { useWixClient } from '@/hooks/useWixClient';
 import React, { useState } from 'react'; {/*Importación del hook usestate */ }
 
@@ -31,25 +32,8 @@ export const Add = ({
     //Uso del hook de wix client
     const wixClient = useWixClient();
 
-    // maneja operaciones que requieren tiempo para completarse
-    const addItem = async () => {
-        //permite agregar productos al carrito de compras actual
-        const response = await wixClient.currentCart.addToCurrentCart({
-            //Se pasa un objeto con una propiedad lineItems, que es un arreglo donde cada elemento representa un producto
-            lineItems: [
-                {
-                    //contiene información necesaria para identificar el producto que se va a agregar al carrito
-                    catalogReference: {
-                        appId: process.env.NEXT_PUBLIC_WIX_APP_ID!,
-                        catalogItemId: productId,
-                        // patrón que añade opciones al objeto solo si variantId está definido no es null o undefined
-                        ...(variantId && { options: { variantId } }),
-                    },
-                    quantity: quantity,
-                },
-            ],
-        });
-    };
+    const { addItem, isLoading } = useCartStore();
+
 
     return (
         <div className='flex flex-col gap-4 dark:grayscale dark:text-black' > {/*Div contenedor principal */}
@@ -72,8 +56,12 @@ export const Add = ({
                 </div>
 
                 {/*Botón con función de hover para que al pasar el mouse se rellene de rojo */}
-                <button onClick={addItem} className='w-36 text-sm rounded-3xl ring-1 ring-tienda text-red-500 py-2 px-4
-         hover:bg-tienda hover:text-white disabled:cursor-not-allowed disabled:bg-red-300 disabled:text-white disabled:ring-none'>Agregar al carro
+                <button 
+                onClick={() => addItem(wixClient, productId, variantId, quantity)}
+                disabled={isLoading}
+                className='w-36 text-sm rounded-3xl ring-1 ring-tienda text-red-500 py-2 px-4
+         hover:bg-tienda hover:text-white disabled:cursor-not-allowed disabled:bg-red-300 disabled:ring-0 disabled:text-white disabled:ring-none'>
+            Agregar al carro
                 </button>
             </div >
         </div >

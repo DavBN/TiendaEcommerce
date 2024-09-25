@@ -59,7 +59,7 @@ const CustomizeProducts = ({
     return (
         <div className='flex flex-col gap-6'> {/*Div padre */}
             {productOptions.map((option) => (
-                <div className='relative z-50 flex flex-col gap-4' key={option.name}>
+                <div className='flex flex-col gap-4' key={option.name}>
                     <h4 className='font-medium'>Elige {option.name}</h4>
                     <ul className='flex items-center gap-3'>
                         {option.choices?.map((choice) => {

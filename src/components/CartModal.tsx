@@ -14,18 +14,8 @@ const CartModal = () => {
     {/*Constante de un booleano*/ }
     //const cartItems = true;
 
-
-    //hook de wixclient
     const wixClient = useWixClient();
-
-    const { cart, getCart } = useCartStore()
-
-    // hook que se utiliza para manejar efectos secundarios
-    useEffect(() => {
-        getCart(wixClient);
-    }, [wixClient, getCart]); //El efecto se ejecutará solo cuando el valor de wixClient cambie.
-
-
+    const { cart, isLoading, removeItem } = useCartStore();
 
     return (
         <div className="w-max absolute p-4 rounded-md shadow-[0_px_10px_rgb(0,0,0,0.2] bg-white top-12 right-0 flex flex-col gap-6 z-20">
@@ -57,7 +47,8 @@ const CartModal = () => {
                                         {/* Titulo del producto */}
                                         <div className="flex items-center justify-between gap-8">{/*Contenido del carrito de compra */}
                                             <h3 className="font-semibold">{item.productName?.original}</h3>{/*Contenido del carrito de compra */}
-                                            <div className="p-1 bg-gray-50 rounded-sm flex items-center gap-2">${item.price?.amount}</div>{/*Contenido del carrito de compra */}
+                                            <div className="p-1 bg-gray-50 rounded-sm flex items-center gap-2">
+                                                {item.quantity && item.quantity > 1 && <div className="text-xs text-green-700">{item.quantity} X </div>}${item.price?.amount}</div>{/*Contenido del carrito de compra */}
                                         </div>
                                         {/* Descripción del producto */}
                                         <div className="text-sm text-green-500">{/*Contenido del carrito de compra */}
@@ -66,8 +57,10 @@ const CartModal = () => {
                                     </div>
                                     {/* Botón */}
                                     <div className="flex justify-between text-sm">{/*Contenido del carrito de compra */}
-                                        <span className="text-gray-500">{item.quantity}</span>{/*Contenido del carrito de compra */}
-                                        <span className="text-red-600">Borrar</span>{/*Contenido del carrito de compra */}
+                                        <span className="text-gray-500">Cantidad: {item.quantity}</span>{/*Contenido del carrito de compra */}
+                                        <span className="text-red-600"
+                                            style={{ cursor: isLoading ? "not-allowed" : "pointer" }}
+                                            onClick={() => removeItem(wixClient, item._id!)}>Borrar</span>{/*Contenido del carrito de compra */}
                                     </div>
                                 </div>
                             </div>
@@ -77,14 +70,14 @@ const CartModal = () => {
                     <div>
                         <div className="flex items-center justify-between font-semibold"> {/*Contenido del carrito de compra */}
                             <span>Subtotal</span> {/*Contenido del carrito de compra */}
-                            <span>$2.00</span> {/*Contenido del carrito de compra */}
+                            <span>${cart.subtotal.amount}</span> 
                         </div>
                         <p className="text-gray-500 text-sm mt-2 mb-4">
-                            Este producto está disponible para su venta
+                           Valor a pagar por la cantidad de productos
                         </p>
                         <div className="flex justify-between text-sm"> {/*Contenido del carrito de compra */}
                             <button className="rounded-md py-3 px-4 ring-1 ring-gray-400">Ver carrito</button> {/*Contenido del carrito de compra */}
-                            <button className="rounded-md py-3 px-4 bg-black text-white">Pagar</button> {/*Contenido del carrito de compra */}
+                            <button className="rounded-md py-3 px-4 bg-black text-white disabled:cursor-not-allowed disabled:opacity-75" disabled={isLoading}>Pagar</button> {/*Contenido del carrito de compra */}
                             <h2 className="text-xl"></h2>  {/*Contenido del carrito de compra */}
                         </div>
                     </div>

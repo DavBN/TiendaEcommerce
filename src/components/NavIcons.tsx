@@ -3,9 +3,10 @@
 import Image from "next/image"; {/*Importación de next image para el uso de imagenes */ }
 import Link from "next/link"; {/*Importación de next link para el uso de links */ }
 import { usePathname, useRouter } from "next/navigation"; {/*Importación de next navigation como método de navegación - Router */ }
-import { useState } from "react"; {/*Importación del hook de usestate por parte de react */ }
+import { useEffect, useState } from "react"; {/*Importación del hook de usestate por parte de react */ }
 import CartModal from "./CartModal"; import { useWixClient } from "@/hooks/useWixClient";
 import Cookies from "js-cookie";
+import { useCartStore } from "@/hooks/useCartStore";
 {/*Importación del componente cartmodal */ }
 
 {/*Componente de navicons */ }
@@ -57,7 +58,13 @@ const NavIcons = () => {
         setIsLoading(false);
         setIsProfileOpen(false);
         router.push(logoutUrl);
-    }
+    };
+
+    const { cart, counter, getCart } = useCartStore();
+
+    useEffect(() => {
+        getCart(wixClient);
+    }, [wixClient, getCart]);
 
     return (
         <div className="flex items-center gap-4 xl:gap-6 relative">
@@ -77,7 +84,9 @@ const NavIcons = () => {
             <div className="relative cursor-pointer" onClick={() => setIsCartOpen((prev) => !prev)}>
                 {/*Imagen de carrito de compra con función, en caso de dar click y abrir mostrará la ventana modal con información */}
                 <Image src="/carro.webp" alt="Login" width={30} height={30} className="cursor-pointer dark:grayscale dark:text-dark" />
-                <div className="absolute -top-4 -right-4 w-6 h- bg-tienda rounded-full text-white text-sm flex items-center justify-center dark:grayscale dark:text-dark" >2</div>
+                <div className="absolute -top-4 -right-4 w-6 h- bg-tienda rounded-full text-white text-sm flex items-center justify-center dark:grayscale dark:text-dark" >
+                    {counter}
+                </div>
             </div>
             {isCartOpen && <CartModal />}
         </div>

@@ -39,9 +39,11 @@ const Navbar = () => {
                 </div>
                 {/*Derecha*/}
                 <div className="w-2/3 xl:w-1/2 flex items-center justify-between gap-8 dark:grayscale ">
+               
                     <SearchBar />
-                    <NavIcons />
                     <ToggleTheme />
+                    <NavIcons />
+             
                 </div>
             </div>
         </div>
