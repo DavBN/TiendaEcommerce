@@ -1,6 +1,7 @@
 "use client"; {/*Uso del componente del lado del cliente */ }
 import { createClient, OAuthStrategy } from "@wix/sdk"; {/*Impoprtación de autenticación y el sdk de wix */ }
 import { products, collections } from "@wix/stores"; {/*Importación para el uso del storage de wix donde están los productos almacenados */ }
+import { currentCart } from "@wix/ecom"; //Importación del componente directamente de wix
 import Cookies from "js-cookie"; import { Children, ReactNode } from "react";
 import { createContext } from "react";
 {/*Cookies de javascript para el servidor */ }
@@ -15,7 +16,7 @@ const wixClient = createClient({
     modules: { // Define los módulos que se utilizarán en la aplicación
         products,
         collections, //Maneja los productos almacenados
-        //currentCart, //Maneja el carrito de compras
+        currentCart, //Maneja el carrito de compras
     },
     auth: OAuthStrategy({ //Maneja la parte de la autenticación 
         clientId: process.env.NEXT_PUBLIC_WIX_CLIENT_ID!, //Variable de entorno para el uso del id proporcionado por wix
@@ -35,5 +36,5 @@ export const WixClientContextProvider = ({ // Envuelve otros componentes, propor
 }: {
     children: ReactNode;
 }) => {
-    return (<WixClientContext.Provider value={wixClient}>{children}</WixClientContext.Provider> ); {/*permite que cualquier componente hijo acceda a wixClient a través del contexto de React */ }
+    return (<WixClientContext.Provider value={wixClient}>{children}</WixClientContext.Provider>); {/*permite que cualquier componente hijo acceda a wixClient a través del contexto de React */ }
 }

@@ -1,13 +1,33 @@
 "use client"  //Declaración del componente para ser usado del lado del cliente
 
 {/*Importaciones necesarias de next image para usar imagenes */ }
+import { useWixClient } from "@/hooks/useWixClient";
 import Image from "next/image"
+import { useEffect } from "react";
 
 const CartModal = () => {
     {/*Constante del modal del carrito, miniventana al hacer click en el carrito */ }
 
     {/*Constante de un booleano*/ }
-    const cartItems = true
+    const cartItems = true;
+
+
+    //hook de wixclient
+    const wixClient = useWixClient();
+
+    // hook que se utiliza para manejar efectos secundarios
+    useEffect(() => {
+        //obtiene el carrito de compras actual del cliente
+        const getCart = async () => {
+            //función del cliente Wix que devuelve información del carrito de compras actual
+            const response = await wixClient.currentCart.getCurrentCart();
+        };
+        // inicia la obtención de los datos del carrito.
+        getCart();
+    }, [wixClient]); //El efecto se ejecutará solo cuando el valor de wixClient cambie.
+
+
+
     return (
         <div className="w-max absolute p-4 rounded-md shadow-[0_px_10px_rgb(0,0,0,0.2] bg-white top-12 right-0 flex flex-col gap-6 z-20">
             {/*Función para validar el carrito de compras, cambia de false a true y de true a false, depende de los items */}
