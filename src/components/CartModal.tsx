@@ -94,7 +94,7 @@ const CartModal = () => {
                     <div>
                         <div className="flex items-center justify-between font-semibold"> {/*Contenido del carrito de compra */}
                             <span>Subtotal</span> {/*Contenido del carrito de compra */}
-                            <span>${cart.subtotal.amount}</span>
+                            {/* //<span>${cart.subtotal.amount}</span> */}
                         </div>
                         <p className="text-gray-500 text-sm mt-2 mb-4">
                             Valor a pagar por la cantidad de productos
