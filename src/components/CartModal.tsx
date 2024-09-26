@@ -6,6 +6,7 @@ import { useWixClient } from "@/hooks/useWixClient";
 import Image from "next/image"
 import { useEffect } from "react";
 import { media as wixMedia } from "@wix/sdk";
+import { currentCart } from "@wix/ecom";
 
 
 const CartModal = () => {
@@ -16,6 +17,29 @@ const CartModal = () => {
 
     const wixClient = useWixClient();
     const { cart, isLoading, removeItem } = useCartStore();
+
+    const handleCheckout = async () => {
+        try {
+            const checkout = await wixClient.currentCart.createCheckoutFromCurrentCart({
+                channelType: currentCart.ChannelType.WEB,
+            });
+
+            const { redirectSession } = await wixClient.redirects.createRedirectSession({
+                ecomCheckout: { checkoutId: checkout.checkoutId },
+                callbacks: {
+                    postFlowUrl: window.location.origin,
+                    thankYouPageUrl: `{window.location.origin}/success`
+                }
+            });
+
+            if (redirectSession?.fullUrl) {
+                window.location.href = redirectSession.fullUrl;
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     return (
         <div className="w-max absolute p-4 rounded-md shadow-[0_px_10px_rgb(0,0,0,0.2] bg-white top-12 right-0 flex flex-col gap-6 z-20">
@@ -70,14 +94,19 @@ const CartModal = () => {
                     <div>
                         <div className="flex items-center justify-between font-semibold"> {/*Contenido del carrito de compra */}
                             <span>Subtotal</span> {/*Contenido del carrito de compra */}
-                            <span>${cart.subtotal.amount}</span> 
+                            <span>${cart.subtotal.amount}</span>
                         </div>
                         <p className="text-gray-500 text-sm mt-2 mb-4">
-                           Valor a pagar por la cantidad de productos
+                            Valor a pagar por la cantidad de productos
                         </p>
                         <div className="flex justify-between text-sm"> {/*Contenido del carrito de compra */}
                             <button className="rounded-md py-3 px-4 ring-1 ring-gray-400">Ver carrito</button> {/*Contenido del carrito de compra */}
-                            <button className="rounded-md py-3 px-4 bg-black text-white disabled:cursor-not-allowed disabled:opacity-75" disabled={isLoading}>Pagar</button> {/*Contenido del carrito de compra */}
+                            <button className="rounded-md py-3 px-4 bg-black text-white disabled:cursor-not-allowed disabled:opacity-75"
+                                disabled={isLoading}
+                                onClick={handleCheckout}
+                            >
+                                Pagar
+                            </button> {/*Contenido del carrito de compra */}
                             <h2 className="text-xl"></h2>  {/*Contenido del carrito de compra */}
                         </div>
                     </div>

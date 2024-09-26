@@ -4,6 +4,7 @@ import { products, collections } from "@wix/stores"; {/*Importación para el uso
 import { currentCart } from "@wix/ecom"; //Importación del componente directamente de wix
 import Cookies from "js-cookie"; import { Children, ReactNode } from "react";
 import { createContext } from "react";
+import { redirects } from "@wix/redirects";
 {/*Cookies de javascript para el servidor */ }
 
 {/* Constante que intenta recuperar el valor de la cookie "refreshToken", lo convierte de una cadena JSON a un objeto JavaScript, 
@@ -17,6 +18,7 @@ const wixClient = createClient({
         products,
         collections, //Maneja los productos almacenados
         currentCart, //Maneja el carrito de compras
+        redirects,
     },
     auth: OAuthStrategy({ //Maneja la parte de la autenticación 
         clientId: process.env.NEXT_PUBLIC_WIX_CLIENT_ID!, //Variable de entorno para el uso del id proporcionado por wix
